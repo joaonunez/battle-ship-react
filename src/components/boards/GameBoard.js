@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Swal from 'sweetalert2'
 //funcion para generar nuestro tablero con posiciones aleatorias
 const generateRandomBoard = () => {
   const rows = 10; //declaramos numero de filas
@@ -49,7 +49,7 @@ const GameBoard = () => {
   const [gameBoard, setGameBoard] = useState(generateRandomBoard()); //setGameBoard sera la funcion que nos permite actualizar gameBoard cuando sea necesario
 
   //Declaramos la funcion para disparar un torpedo
-  const fireTorpedo = (row, col) => {
+  const fireTorpedo = (row, col) => { //en los parametros iran los indices de fila y columna para un disparo certero !
     //IMPORTANTE para matrices no podemos usar un simple spread operator para hacer una copia como por ejemplo newBoard = [...,gameBoard]
     //EL PROBLEMA esta en que el spread operator por si solo solo recorreria la primera fila, y no una matriz bidireccional
     //Para hacerlo correctamente y crear una copia exacta del tablero debe hacerse mapeo con spread
@@ -58,6 +58,48 @@ const GameBoard = () => {
     //teniendo claro que nuestra matriz es un array de arrays(10 arrays en este caso) recorreremos cada elemento haciendo uso del map
     //https://stackoverflow.com/questions/76016483/how-to-create-an-empty-copy-of-a-2d-array-in-javascript#new-answer?newreg=3db855ec4bd64efd83c6e07559c2215e
     const newBoard = gameBoard.map((row) => [...row]);
+
+    // si la casilla clickeada tiene un valor o el valor es 1(hay un barco en esta posicion):
+    if (newBoard[row][col] === 1) {
+
+      // si esta condicion se cumple establecemos el numero 2 en esa casilla de la matriz
+      //el numero 2 en la celda de la matriz indica que le acertamos a un barco
+      newBoard[row][col] = 2;
+      let timerInterval;
+
+      
+      Swal.fire({
+        title: "Auto close alert!",
+        html: "I will close in <b></b> milliseconds.",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+          timerInterval = setInterval(() => {
+            timer.textContent = `${Swal.getTimerLeft()}`;
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log("I was closed by the timer");
+        }
+      });
+
+
+      // si la celda ala que hicimos clcik tiene el valor de 0(solo hay agua en esa posicion)
+    } else if (newBoard[row][col] === 0) {
+
+      //si esta condicion se cumple establecemos el numero 3 en esa casilla de la matriz
+      //el numero 3 indica que ya bombardeamos un lugar y solo habia agua en esa posicion
+      newBoard[row][col] = 3;
+    }
+    setGameBoard(newBoard);
+
   };
   return (
     <>
@@ -68,21 +110,20 @@ const GameBoard = () => {
           /* En esta linea de codigo coieza a recorrer cada columna en la fila que se encuentre actualmente */
           row.map((cell, colIndex) => (
             <div
-            /* asignamos la llave a cada div  */
+              /* asignamos la llave a cada div  */
               key={`${rowIndex}-${colIndex}`}
 
               /* actualmente en etapa de pruebas de desarrollo necesito ver los colores de donde se generan los barcos para ir guiandome visualmente */
-              className={`cell ${
-                cell === 1
+              className={`cell ${cell === 1
                   ? "ship"
                   : cell === 2
-                  ? "hit"
-                  : cell === 3
-                  ? "miss"
-                  : "empty"
-              }`}
+                    ? "hit"
+                    : cell === 3
+                      ? "miss"
+                      : "empty"
+                }`}
               /* evento onclick que disparara ala casilla seleccionada */
-              onClick={()=> fireTorpedo(rowIndex, colIndex)}
+              onClick={() => fireTorpedo(rowIndex, colIndex)}
             ></div>
           ))
         )}
