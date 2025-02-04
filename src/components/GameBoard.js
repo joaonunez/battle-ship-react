@@ -81,7 +81,7 @@ const GameBoard = () => {
                   ? "miss"
                   : "empty"
               }`}
-              evento onclick que disparara ala casilla seleccionada
+              /* evento onclick que disparara ala casilla seleccionada */
               onClick={()=> fireTorpedo(rowIndex, colIndex)}
             ></div>
           ))
