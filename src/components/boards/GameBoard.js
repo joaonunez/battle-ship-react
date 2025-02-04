@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Swal from 'sweetalert2'
+import "../alerts/ShipDestroyedAlert"
+import ShipDestroyedAlert from "../alerts/ShipDestroyedAlert";
 //funcion para generar nuestro tablero con posiciones aleatorias
 const generateRandomBoard = () => {
   const rows = 10; //declaramos numero de filas
@@ -65,30 +66,10 @@ const GameBoard = () => {
       // si esta condicion se cumple establecemos el numero 2 en esa casilla de la matriz
       //el numero 2 en la celda de la matriz indica que le acertamos a un barco
       newBoard[row][col] = 2;
-      let timerInterval;
+      ShipDestroyedAlert(); 
+
 
       
-      Swal.fire({
-        title: "Auto close alert!",
-        html: "I will close in <b></b> milliseconds.",
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: () => {
-          Swal.showLoading();
-          const timer = Swal.getPopup().querySelector("b");
-          timerInterval = setInterval(() => {
-            timer.textContent = `${Swal.getTimerLeft()}`;
-          }, 100);
-        },
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log("I was closed by the timer");
-        }
-      });
 
 
       // si la celda ala que hicimos clcik tiene el valor de 0(solo hay agua en esa posicion)

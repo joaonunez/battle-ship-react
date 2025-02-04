@@ -13,6 +13,7 @@
   .cell:hover{
     border: 1.5px solid red;
     background-color: rgb(238, 202, 202);
+    cursor: crosshair;
   }
   
   .empty {
