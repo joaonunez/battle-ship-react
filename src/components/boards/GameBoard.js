@@ -49,6 +49,7 @@ const GameBoard = () => {
   //asignamos la tabla ala variable gameBoard
   const [gameBoard, setGameBoard] = useState(generateRandomBoard()); //setGameBoard sera la funcion que nos permite actualizar gameBoard cuando sea necesario
 
+
   //Declaramos la funcion para disparar un torpedo
   const fireTorpedo = (row, col) => { //en los parametros iran los indices de fila y columna para un disparo certero !
     //IMPORTANTE para matrices no podemos usar un simple spread operator para hacer una copia como por ejemplo newBoard = [...,gameBoard]
@@ -66,10 +67,7 @@ const GameBoard = () => {
       // si esta condicion se cumple establecemos el numero 2 en esa casilla de la matriz
       //el numero 2 en la celda de la matriz indica que le acertamos a un barco
       newBoard[row][col] = 2;
-      ShipDestroyedAlert(); 
-
-
-      
+      ShipDestroyedAlert();
 
 
       // si la celda ala que hicimos clcik tiene el valor de 0(solo hay agua en esa posicion)
@@ -80,7 +78,7 @@ const GameBoard = () => {
       newBoard[row][col] = 3;
     }
     setGameBoard(newBoard);
-
+    
   };
   return (
     <>

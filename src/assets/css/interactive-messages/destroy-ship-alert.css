@@ -1,0 +1,9 @@
+.swal-title {
+    font-family: "Quicksand", sans-serif !important;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4d4d; /* Color rojo para más impacto */
+}
+.swal-popup {
+    font-family: "Quicksand", sans-serif !important;
+}

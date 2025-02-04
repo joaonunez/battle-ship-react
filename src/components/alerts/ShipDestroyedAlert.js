@@ -1,28 +1,29 @@
 import Swal from "sweetalert2";
-
-const ShipDestroyedAlert = () => {
+import imageShipDestroyed from "../../assets/img/shipdestroyed.png"
+const ShipDestroyedAlert = async () => {
     let timerInterval;
-    return  Swal.fire({
+    const result_2 = await Swal.fire({
         title: "Nave Destruida !!!",
-        html: "<b></b>",
-        timer: 1000,
-        timerProgressBar: true,
+        imageUrl: imageShipDestroyed, // Imagen del barco destruido
+        imageWidth: 400, // Ajusta el tamaño de la imagen
+        imageHeight: 200,
+        timer: 2000,
         didOpen: () => {
             Swal.showLoading();
-            const timer = Swal.getPopup().querySelector("b");
-            timerInterval = setInterval(() => {
-                timer.textContent = `${Swal.getTimerLeft()}`;
-            }, 100);
         },
         willClose: () => {
             clearInterval(timerInterval);
-        }
-    }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-            console.log("I was closed by the timer");
+        },
+        //aca modifique porque me quize dar el gusto de usar una fuente que me gusta
+        customClass: {
+            title: "swal-title",
+            popup: "swal-popup",
         }
     });
+    /* Read more about handling dismissals below */
+    if (result_2.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+    }
 }
 
 export default ShipDestroyedAlert;
