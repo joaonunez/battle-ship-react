@@ -1,0 +1,35 @@
+.board {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    flex-wrap: wrap;
+    width: 700px;
+  }
+  
+  .cell {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+  }
+  .cell:hover{
+    border: 1.5px solid red;
+    background-color: rgb(238, 202, 202);
+  }
+  
+  .empty {
+    background-color: white;
+  }
+  
+  .ship {
+    background-color: gray;
+  }
+  
+  .hit {
+    background-color: red;
+  }
+  
+  .miss {
+    background-color: blue;
+  }
+  
