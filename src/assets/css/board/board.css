@@ -18,6 +18,9 @@
   .empty {
     background-color: white;
   }
+  .empty:active{
+    
+  }
   
   .ship {
     background-color: gray;

@@ -7,7 +7,7 @@ function App() {
     <>
       <div className='app'>
         <h1 className='text-center mt-3'>Batalla De Embarcaciones</h1>
-        <TurnIndicator isPlayerTurn={false} />
+        <TurnIndicator isPlayerTurn={true} />
         <GameBoard />
       </div>
 
