@@ -15,10 +15,43 @@ const generateRandomBoard = () =>{
 
     // console.log(board)  obtenemos una matriz de 10x10 llena de ceros
 
-}
+    //generar barcos en posiciones aleatorias en el tablero:
+
+    for(let i = 0; i < 10 ; i ++){//la batalla se establece en 10 barcos por tablero y establecemos un for que se repetira 10 veces de 0 a 9
+
+        let placed = false; //esta variable es creada inicialmente para establecer que el estado colocado es falso inicialmente en cada iteracion del bucle flor, 
+
+        //mientras placed sea false o negado dentro de sus 10 iteraciones establecidas, seguira ejecutandose el while
+        while(!placed){
+
+            //math floor redondea hacia abajo, elminando los decimales, math random da un numero aleatorio entre 0 y 1
+            const row = Math.floor(Math.random() * rows);//generamos un numero aleatorio entre 0 y 1 y lo multiplicamos por el numero de filas existente
+
+            const col = Math.floor(Math.random() * cols); //generamos un numero aleatorio entre 0 y 1 y lo multiplicacmos por el numero de columnas existente
+
+            //verificamos si la posicion en la matriz es igual a 0 es decir si no tiene barcos en ese cuadrado del tablero
+            if(board[row][col] === 0){
+
+                //si el lugar establecido aleatoriamente por math floor y mathrandom esta vacio o es igual a 0
+                //entonces establecemos su valor a 1 es decir, el lugar se ocupara con un barco
+                board[row][col] = 1;
+
+                //finalizamos el bucle while cambiando el valor de placed, pasando asi al siguiente barco en el for
+                placed = true;
+            }
+        }
+    }
+    console.log(board);
+    return board;
+};
+
+generateRandomBoard();
 
 const GameBoard = () => {
-
+    //cargamos el tablero 
+    //declaramos que sera una variable que cambiara con el tiempo al usar useState
+    //asignamos la tabla ala variable gameBoard
+    const [gameBoard, setGameBoard] = useState(generateRandomBoard()); //setGameBoard sera la funcion que nos permite actualizar gameBoard cuando sea necesario
 
   
   return (
