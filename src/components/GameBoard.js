@@ -44,19 +44,33 @@ const generateRandomBoard = () =>{
     console.log(board);
     return board;
 };
-
-generateRandomBoard();
-
 const GameBoard = () => {
     //cargamos el tablero 
     //declaramos que sera una variable que cambiara con el tiempo al usar useState
     //asignamos la tabla ala variable gameBoard
     const [gameBoard, setGameBoard] = useState(generateRandomBoard()); //setGameBoard sera la funcion que nos permite actualizar gameBoard cuando sea necesario
 
-  
+    //IMPORTANTE para matrices no podemos usar un simple spread operator para hacer una copia como por ejemplo newBoard = [...,gameBoard]
+    //EL PROBLEMA esta en que el spread operator por si solo solo recorreria la primera fila, y no una matriz bidireccional
+    //Para hacerlo correctamente y crear una copia exacta del tablero debe hacerse mapeo con spread
+    //la siguiente forma es la correcta:
+
+    const fireTorpedo = (row, col) =>{
+
+        //teniendo claro que nuestra matriz es un array de 10 arrays recorreremos cada elemento haciendo uso del map
+        //https://stackoverflow.com/questions/76016483/how-to-create-an-empty-copy-of-a-2d-array-in-javascript#new-answer?newreg=3db855ec4bd64efd83c6e07559c2215e
+        const newBoard = gameBoard.map(row =>[...row]);
+
+
+    
+
+    }
+  fireTorpedo();
   return (
     <></>
   );
+
+  
 };
 
 export default GameBoard;
