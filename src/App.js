@@ -1,12 +1,16 @@
 
-import './App.css';
-import GameBoard from './components/GameBoard';
+import GameBoard from './components/boards/GameBoard';
+import TurnIndicator from './components/interactive-messages/TurnIndicator';
 
 function App() {
   return (
     <>
-      <h1 className='text-center mt-3'>BattleShip</h1>
-      <GameBoard/>
+      <div className='app'>
+        <h1 className='text-center mt-3'>Batalla De Embarcaciones</h1>
+        <TurnIndicator isPlayerTurn={true} />
+        <GameBoard />
+      </div>
+
     </>
   );
 }
