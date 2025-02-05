@@ -61,7 +61,7 @@ const GameBoard = () => {
     //https://stackoverflow.com/questions/76016483/how-to-create-an-empty-copy-of-a-2d-array-in-javascript#new-answer?newreg=3db855ec4bd64efd83c6e07559c2215e
     const newBoard = gameBoard.map((row) => [...row]);
 
-    // si la casilla clickeada tiene un valor o el valor es 1(hay un barco en esta posicion):
+    // si la casilla clickeada tiene un valor de 1(hay un barco en esta posicion):
     if (newBoard[row][col] === 1) {
 
       // si esta condicion se cumple establecemos el numero 2 en esa casilla de la matriz
