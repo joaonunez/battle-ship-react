@@ -29,3 +29,13 @@ export const fireTorpedo = (board, row, col) => { //en los parametros iran los i
     return newBoard;
     
   };
+
+
+  //para cambiar de turno
+  //verificamos que es actualmente el turno del jugador es falso o verdadero
+  //sea cual sea el valor en ese momento
+  //si es verdadero, cambiara al turno de la IA
+  //si es falso es decir si es turno de la IA cambiara al turno del jugador
+export const setTurn = (isPlayerTurn) =>{
+    return !isPlayerTurn;
+};

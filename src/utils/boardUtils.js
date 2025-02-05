@@ -37,6 +37,5 @@ export const generateRandomBoard = () => {
         }
       }
     }
-    console.log(board);
     return board;
   };

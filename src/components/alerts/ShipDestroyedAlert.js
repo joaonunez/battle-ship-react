@@ -22,7 +22,6 @@ const ShipDestroyedAlert = async () => {
     });
     /* Read more about handling dismissals below */
     if (result_2.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
     }
 }
 

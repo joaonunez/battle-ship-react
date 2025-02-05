@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "../alerts/ShipDestroyedAlert";
 import { generateRandomBoard } from "../../utils/boardUtils";
 import { fireTorpedo } from "../../utils/gameLogic";
+import { setTurn } from "../../utils/gameLogic";
 
-const GameBoard = () => {
+
+//para pasar props de manera correcta debemos agregarlas dentro de ({})
+const GameBoard = ({isPlayerTurn, onTurnChange}) => {
+  
   //cargamos el tablero
   //declaramos que sera una variable que cambiara con el tiempo al usar useState
   //asignamos la tabla ala variable gameBoard
@@ -15,10 +19,33 @@ const GameBoard = () => {
       const newBoard = fireTorpedo(prevBoard, row, col); //le pasamos los parametros ala funcion que declaramos en gameLogic.js
       return newBoard;
     });
+    
+    //se puede llamar como funcion porque en src/App.js esta declarado como prop
+    onTurnChange();
   };
 
   return (
     <>
+    <h2>Tablero de la IA</h2>
+      <div className="board">
+        {aiBoard.map((row, rowIndex) =>
+          row.map((cell, colIndex) => (
+            <div
+              key={`${rowIndex}-${colIndex}`}
+              className={`cell ${
+                cell === 1
+                  ? "ship"
+                  : cell === 2
+                  ? "hit"
+                  : cell === 3
+                  ? "miss"
+                  : "empty"
+              }`}
+              onClick={() => handlePlayerAttack(rowIndex, colIndex)}
+            ></div>
+          ))
+        )}
+      </div>
       {/* div contenedor del tablero */}
       <h2>Tablero del jugador</h2>
       <div className="board">
@@ -44,26 +71,7 @@ const GameBoard = () => {
         )}
       </div>
 
-      <h2>Tablero de la IA</h2>
-      <div className="board">
-        {aiBoard.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className={`cell ${
-                cell === 1
-                  ? "ship"
-                  : cell === 2
-                  ? "hit"
-                  : cell === 3
-                  ? "miss"
-                  : "empty"
-              }`}
-              onClick={() => handlePlayerAttack(rowIndex, colIndex)}
-            ></div>
-          ))
-        )}
-      </div>
+      
     </>
   );
 };
