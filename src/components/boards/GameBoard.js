@@ -18,7 +18,7 @@ const generateRandomBoard = () => {
   //generar barcos en posiciones aleatorias en el tablero:
 
   for (let i = 0; i < 5; i++) {
-    //la batalla se establece en 5 barcos por tablero y establecemos un for que se repetira 10 veces de 0 a 9
+    //la batalla se establece en 5 barcos por tablero y establecemos un for que se repetira 5 veces de 0 a 5
 
     let placed = false; //esta variable es creada inicialmente para establecer que el estado colocado es falso inicialmente en cada iteracion del bucle flor,
 
