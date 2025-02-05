@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../alerts/ShipDestroyedAlert";
 import { generateRandomBoard } from "../../utils/boardUtils";
 import { fireTorpedo } from "../../utils/gameLogic";
-import { setTurn } from "../../utils/gameLogic";
 
 
 //para pasar props de manera correcta debemos agregarlas dentro de ({})
