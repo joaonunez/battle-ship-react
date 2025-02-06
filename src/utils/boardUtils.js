@@ -5,9 +5,12 @@ export const generateRandomBoard = () => {
     const cols = 10; //declaramos numero de columnas
   
     const board = Array(rows) //creamos un Array de 10 elementos undefined
+    //.fill(valor) convierte todos los elemntos de un array al valor que declaremos dentro del parametro, en este caso null
       .fill(null) // para evitar problemas con map en el console log ala hora de testear convertimos a null para poder ver la matriz en la consola
       //console.log(board) = [null, null, null, null, null, null, null, null, null, null]
   
+    //Array(parametro) creara el numero de arrays vacios segun el numero que le pasemos como parametro, en este caso le pasamos el numero de columnas
+    //.fill(cambiara todos los items de los arrays de vacios a 0)
       .map(() => Array(cols).fill(0)); //esto recorera cara elemento del array que tenemos de 10 null, y los convertira a 10 arrays de 10 ceros, logrando que se convierta en una matriz
   
     // console.log(board)  obtenemos una matriz de 10x10 llena de ceros
