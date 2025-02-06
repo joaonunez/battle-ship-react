@@ -99,7 +99,7 @@ const GameBoard = ({ isPlayerTurn, onTurnChange, isAITurn }) => {
               key={`${rowIndex}-${colIndex}`}
               className={`cell ${
                 cell === 1
-                  ? "ship"
+                  ? "ship-here"
                   : cell === 2
                   ? "hit"
                   : cell === 3
@@ -124,7 +124,7 @@ const GameBoard = ({ isPlayerTurn, onTurnChange, isAITurn }) => {
               /* actualmente en etapa de pruebas de desarrollo necesito ver los colores de donde se generan los barcos para ir guiandome visualmente */
               className={`cell ${
                 cell === 1
-                  ? "ship"
+                  ? "ship-here"
                   : cell === 2
                   ? "hit"
                   : cell === 3
