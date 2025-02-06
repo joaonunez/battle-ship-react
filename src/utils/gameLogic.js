@@ -1,6 +1,14 @@
 import ShipDestroyedAlert from "../components/alerts/ShipDestroyedAlert";
  //Declaramos la funcion para disparar un torpedo
-export const fireTorpedo = (board, row, col) => { //en los parametros iran los indices de fila y columna para un disparo certero ! ademas del tablero que le estamos pasando
+export const fireTorpedo = (board, row, col, isPlayerTurn) => { 
+
+  //verifiacmos que sea turno del jugador
+  if(!isPlayerTurn){
+    console.log("No es tu turno"); //pruebas para ver en consola el resultado
+    return board;
+  }
+  
+  //en los parametros iran los indices de fila y columna para un disparo certero ! ademas del tablero que le estamos pasando
     //IMPORTANTE para matrices no podemos usar un simple spread operator para hacer una copia como por ejemplo newBoard = [...,gameBoard]
     //EL PROBLEMA esta en que el spread operator por si solo solo recorreria la primera fila, y no una matriz bidireccional
     //Para hacerlo correctamente y crear una copia exacta del tablero debe hacerse mapeo con spread

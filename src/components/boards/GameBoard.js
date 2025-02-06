@@ -14,8 +14,12 @@ const GameBoard = ({isPlayerTurn, onTurnChange}) => {
   const [aiBoard, setAiBoard] = useState(generateRandomBoard()); //Set AI board funcion para actualizar gameboard cuando sea necesario
 
   const handlePlayerAttack = (row, col) => {
+    if(!isPlayerTurn){
+      console.log("No es tu turno");
+      return;
+    }
     setAiBoard((prevBoard) => {
-      const newBoard = fireTorpedo(prevBoard, row, col); //le pasamos los parametros ala funcion que declaramos en gameLogic.js
+      const newBoard = fireTorpedo(prevBoard, row, col, isPlayerTurn); //le pasamos los parametros ala funcion que declaramos en gameLogic.js
       return newBoard;
     });
     
