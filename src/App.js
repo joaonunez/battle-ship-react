@@ -39,6 +39,9 @@ function App() {
             transition={pageTransition}>
           
         <h1 className="text-center mt-3">Batalla De Embarcaciones</h1>
+        <h6>-Cada Tablero tiene 5 barcos ocultos</h6>
+        <h6>-Un barco ocupa un cuadrado</h6>
+        <h6>-ganas cuando destruyes los 5 barcos del rival</h6>
         </motion.div>
 
         </AnimatePresence>
