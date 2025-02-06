@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
-import imageShipDestroyed from "../../assets/img/shipdestroyed.png"
-const ShipDestroyedAlert = async () => {
+const AIProcessing = async () => {
     let timerInterval;
     const result_2 = await Swal.fire({
         title: "La IA esta pensando",
@@ -24,4 +23,4 @@ const ShipDestroyedAlert = async () => {
     }
 }
 
-export default ShipDestroyedAlert;
+export default AIProcessing;

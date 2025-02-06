@@ -9,7 +9,9 @@ function App() {
 
   //funcionalidad para cambiar el estado del turno
   const handleTurnChange = () => {
-    setPlayerTurn(setTurn(isPlayerTurn));
+    setTimeout(()=>{
+      setPlayerTurn(setTurn(isPlayerTurn));
+    },1000)
   };
 
   return (

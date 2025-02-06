@@ -1,4 +1,5 @@
 import ShipDestroyedAlert from "../components/alerts/ShipDestroyedAlert";
+import AIProcessing from "../components/alerts/AIProcessing";
  //Declaramos la funcion para disparar un torpedo
 export const fireTorpedo = (board, row, col, isPlayerTurn) => { 
 
@@ -53,11 +54,19 @@ export const aiAttack = (board, row, col, isAITurn) =>{
   if(!isAITurn){
     return board;
   }
+  AIProcessing();
+
   const newBoard = board.map((row) => [...row]);
-  if(newBoard[row][col]===1){
-    newBoard[row][col] = 2
-  } else if (newBoard[row][col] === 0){
-    newBoard[row][col] = 3;
-  }
+  //al hacer intervalo de tiempo para tardar algo en responder
+  //es necesario que las asginaciones esten dentro del settime out
+  
+  setTimeout(() =>{
+    if(newBoard[row][col]===1){
+      newBoard[row][col] = 2
+    } else if (newBoard[row][col] === 0){
+      newBoard[row][col] = 3;
+    }
+  },800)
+  //pero el return debe ir fuera del intervalo IMPORTABNTE
   return newBoard;
 };
