@@ -6,6 +6,7 @@ const AIProcessing = async () => {
         imageWidth: 400, 
         imageHeight: 200,
         timer: 2000,
+        allowOutsideClick: false, // Bloquea clics fuera de la alerta
         didOpen: () => {
             Swal.showLoading();
         },
