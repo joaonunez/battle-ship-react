@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "../alerts/ShipDestroyedAlert";
 import { generateRandomBoard } from "../../utils/boardUtils";
 import { fireTorpedo } from "../../utils/gameLogic";
+import { aiAttack } from "../../utils/gameLogic";
 
 
 //para pasar props de manera correcta debemos agregarlas dentro de ({})
-const GameBoard = ({isPlayerTurn, onTurnChange}) => {
+const GameBoard = ({isPlayerTurn, onTurnChange, isAITurn}) => {
   
   //cargamos el tablero
   //declaramos que sera una variable que cambiara con el tiempo al usar useState
@@ -25,6 +26,20 @@ const GameBoard = ({isPlayerTurn, onTurnChange}) => {
     
     //se puede llamar como funcion porque en src/App.js esta declarado como prop
     onTurnChange();
+  };
+
+  const handleAIAttack = (row, col) => {
+    //si no es turno de la ia aseguramos que no se ejecute la funcion deteniendola antes con return
+    if(!isAITurn){
+      return;
+    }
+    const randomNumberRow = Math.floor(Math.random() * 10 );
+    const randomNumberCol = Math.floor(Math.random() * 10 );
+    setPlayerBoard((prevBoard) =>{
+      const newBoard = aiAttack(prevBoard, randomNumberRow , randomNumberCol , isAITurn);
+      return newBoard;
+    });
+
   };
 
   return (
