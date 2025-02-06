@@ -13,7 +13,7 @@ function App() {
     //decidi agregar el intervalo de tiempo para que se vea dinamico y no tan computarizado
     setTimeout(() => {
       setPlayerTurn(setTurn(isPlayerTurn));
-    }, 1000);
+    }, 1);
   };
 
   //animaciones de renderizado para la aplicacion

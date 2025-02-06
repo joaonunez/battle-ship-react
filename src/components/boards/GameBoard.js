@@ -86,7 +86,7 @@ const GameBoard = ({ isPlayerTurn, onTurnChange, isAITurn }) => {
         onTurnChange(); //se puede llamar como funcion porque en src/App.js esta declarado como prop
         handleAIAttack();
       }
-    }, 1000);
+    }, 0);
   };
 
   return (
