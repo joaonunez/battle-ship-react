@@ -47,3 +47,17 @@ export const fireTorpedo = (board, row, col, isPlayerTurn) => {
 export const setTurn = (isPlayerTurn) =>{
     return !isPlayerTurn;
 };
+
+export const aiAttack = (board, row, col, isAITurn) =>{
+  //para asegurarnos de que la ia solo atacara cuando sea su turno ponemos una condicional
+  if(!isAITurn){
+    return board;
+  }
+  const newBoard = board.map((row) => [...row]);
+  if(newBoard[row][col]===1){
+    newBoard[row][col] = 2
+  } else if (newBoard[row][col] === 0){
+    newBoard[row][col] = 3;
+  }
+  return newBoard;
+};
