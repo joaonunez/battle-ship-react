@@ -22,7 +22,7 @@ function App() {
         <TurnIndicator isPlayerTurn={isPlayerTurn}  /> 
 
         {/* //al tener onTurnChange como prop es posible llamarlo como funcion en el componente GameBoard */}
-        <GameBoard isPlayerTurn={isPlayerTurn} onTurnChange={handleTurnChange} />
+        <GameBoard isPlayerTurn={isPlayerTurn} onTurnChange={handleTurnChange}  isAITurn={!isPlayerTurn} />
       </div>
 
     </>

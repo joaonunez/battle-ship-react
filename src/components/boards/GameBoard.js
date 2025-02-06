@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../alerts/ShipDestroyedAlert";
 import { generateRandomBoard } from "../../utils/boardUtils";
 import { fireTorpedo } from "../../utils/gameLogic";
@@ -7,12 +7,34 @@ import { aiAttack } from "../../utils/gameLogic";
 
 //para pasar props de manera correcta debemos agregarlas dentro de ({})
 const GameBoard = ({isPlayerTurn, onTurnChange, isAITurn}) => {
+
+  //es requerido implementar useeffect para que se ejecute cuando se detecte un cambio en los estados
+//useEffect sirve para ejectuar codigo automaticamente cuando un estado cambia(UN ESTADO DE LOS USESTATE)
+useEffect(() =>{
+  if(isAITurn){
+    const randomNumberRow = Math.floor(Math.random() * 10 );
+    const randomNumberCol = Math.floor(Math.random() * 10 );
+    //Se ejecutara solo cuando se detecte un cambio en el estado de isAITurn
+    handleAIAttack(randomNumberRow, randomNumberCol)
+  }
+},[isAITurn]);
   
   //cargamos el tablero
   //declaramos que sera una variable que cambiara con el tiempo al usar useState
   //asignamos la tabla ala variable gameBoard
   const [playerBoard, setPlayerBoard] = useState(generateRandomBoard()); //setPlayerBoard sera la funcion que nos permite actualizar gameBoard cuando sea necesario
   const [aiBoard, setAiBoard] = useState(generateRandomBoard()); //Set AI board funcion para actualizar gameboard cuando sea necesario
+
+
+  const handleAIAttack = (row, col) => {
+    //si no es turno de la ia aseguramos que no se ejecute la funcion deteniendola antes con return
+    if(!isAITurn) return;
+    
+    setPlayerBoard((prevBoard) => aiAttack(prevBoard, row, col, isAITurn));
+    setTimeout(()=>{
+      onTurnChange();
+    }, 1000)
+  };
 
   const handlePlayerAttack = (row, col) => {
     if(!isPlayerTurn){
@@ -26,21 +48,10 @@ const GameBoard = ({isPlayerTurn, onTurnChange, isAITurn}) => {
     
     //se puede llamar como funcion porque en src/App.js esta declarado como prop
     onTurnChange();
+    handleAIAttack();
   };
 
-  const handleAIAttack = (row, col) => {
-    //si no es turno de la ia aseguramos que no se ejecute la funcion deteniendola antes con return
-    if(!isAITurn){
-      return;
-    }
-    const randomNumberRow = Math.floor(Math.random() * 10 );
-    const randomNumberCol = Math.floor(Math.random() * 10 );
-    setPlayerBoard((prevBoard) =>{
-      const newBoard = aiAttack(prevBoard, randomNumberRow , randomNumberCol , isAITurn);
-      return newBoard;
-    });
-
-  };
+  
 
   return (
     <>
